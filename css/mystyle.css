@@ -1,0 +1,50 @@
+/* ===================== */
+/* BACKGROUND (REQUIRED) */
+/* ===================== */
+body {
+    background-color: #f0f8ff; /* light blue */
+    font-family: Arial, sans-serif; /* font family requirement */
+    color: #333; /* font color requirement */
+}
+
+/* ===================== */
+/* HEADER STYLING */
+/* ===================== */
+.header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ===================== */
+/* CONTENT DIVS (REQUIRED: at least 3 divs used) */
+/* ===================== */
+.content {
+    background-color: white;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* ===================== */
+/* NAVIGATION */
+/* ===================== */
+nav {
+    background-color: #222;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ===================== */
+/* FOOTER */
+/* ===================== */
+.footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}

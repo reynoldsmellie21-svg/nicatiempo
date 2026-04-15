@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nicaragua Fishing Game 🎣</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(#87CEEB, #1E90FF);
+        color: white;
+        margin: 0;
+    }
+
+    h1 {
+        margin-top: 20px;
+    }
+
+    .game-box {
+        background: rgba(0,0,0,0.3);
+        padding: 20px;
+        border-radius: 15px;
+        width: 320px;
+        margin: 20px auto;
+    }
+
+    button {
+        padding: 10px 18px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    .fish-btn {
+        background-color: #FFD700;
+    }
+
+    .reset-btn {
+        background-color: #FF6B6B;
+        color: white;
+    }
+
+    #result {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    #score {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    /* 🎣 Fishing area */
+    .water {
+        margin: 20px auto;
+        width: 200px;
+        height: 150px;
+        background: #1E90FF;
+        border-radius: 0 0 50% 50%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* 🐟 Fish animation */
+    .fish {
+        position: absolute;
+        font-size: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    .fish.show {
+        bottom: 40px;
+        opacity: 1;
+    }
+
+    /* 🌊 Bottom ocean section */
+    .ocean {
+        position: relative;
+        margin-top: 50px;
+        height: 150px;
+        background: #1E90FF;
+        overflow: hidden;
+    }
+
+    .wave {
+        position: absolute;
+        width: 200%;
+        height: 100px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        top: -50px;
+        left: 0;
+        animation: waveMove 6s linear infinite;
+    }
+
+    .wave2 {
+        top: -30px;
+        animation-duration: 8s;
+        opacity: 0.5;
+    }
+
+    @keyframes waveMove {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+
+    .fish-row {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        font-size: 28px;
+        animation: swim 12s linear infinite;
+    }
+
+    @keyframes swim {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(100%); }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Fishing in Nicaragua game! 🎣</h1>
+
+<div class="game-box">
+    <h2>Cast Your Line!</h2>
+
+    <div class="water">
+        <div id="fishDisplay" class="fish">🐟</div>
+    </div>
+
+    <button class="fish-btn" onclick="goFishing()">Go Fishing 🎣</button>
+    <button class="reset-btn" onclick="resetGame()">Reset 🔄</button>
+
+    <div id="result">Click the button to fish!</div>
+    <div id="score">Score: 0</div>
+</div>
+
+<!-- 🌴 FUN OCEAN SECTION -->
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave wave2"></div>
+
+    <div class="fish-row">
+        🐟 🐠 🐡 🦈 🐊 🐟 🐠 🐡
+    </div>
+</div>
+
+<script>
+    let score = 0;
+
+    const catches = [
+        { name: "🐟 Fresh Fish", points: 10, emoji: "🐟" },
+        { name: "🐠 Tropical Fish", points: 15, emoji: "🐠" },
+        { name: "🪚 Sawfish", points: 20, emoji: "🪚" },
+        { name: "🦈 Shark", points: -15, emoji: "🦈" },
+        { name: "🐊 Alligator", points: -25, emoji: "🐊" },
+        { name: "🌊 Nothing...", points: 0, emoji: "🌊" }
+    ];
+
+    function goFishing() {
+        const randomCatch = catches[Math.floor(Math.random() * catches.length)];
+
+        score += randomCatch.points;
+
+        document.getElementById("result").textContent =
+            "You caught: " + randomCatch.name + " (" + randomCatch.points + " pts)";
+
+        document.getElementById("score").textContent =
+            "Score: " + score;
+
+        const fish = document.getElementById("fishDisplay");
+        fish.textContent = randomCatch.emoji;
+        fish.classList.remove("show");
+
+        setTimeout(() => {
+            fish.classList.add("show");
+        }, 50);
+    }
+
+    function resetGame() {
+        score = 0;
+        document.getElementById("score").textContent = "Score: 0";
+        document.getElementById("result").textContent = "Game reset. Go fishing! 🎣";
+
+        const fish = document.getElementById("fishDisplay");
+        fish.classList.remove("show");
+    }
+</script>
+
+</body>
+</html>
